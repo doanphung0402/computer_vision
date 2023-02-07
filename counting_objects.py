@@ -37,14 +37,14 @@ def select_image():
 
     fig1 = plt.figure(figsize=(10, 7))
     # phát hiện cạnh dùng canny of cv2
-    canny = cv2.Canny(blur, 10, 20)
+    canny = cv2.Canny(blur, 10, 53)
     fig1.add_subplot(2, 2, 1)
     plt.imshow(canny, 'gray')
     plt.axis('off')
     plt.title("ảnh sau phát hiện cạnh ")
 
-    # giãn nở rộng ảnh cv2
-    kernel_erode = np.ones((5, 5), np.uint8)
+    # thu nho  ảnh cv2
+    kernel_erode = np.ones((1, 1), np.uint8)
     eroded = cv2.erode(canny, kernel_erode, iterations=1)
     fig1.add_subplot(2, 2, 2)
     plt.imshow(eroded, 'gray')
@@ -53,7 +53,7 @@ def select_image():
 
     # giãn nở rộng ảnh cv2
     kernel_dilate = np.ones((3, 3), np.uint8)
-    dilated = cv2.dilate(canny, kernel_dilate, iterations=1)
+    dilated = cv2.dilate(eroded, kernel_dilate, iterations=1)
     fig1.add_subplot(2, 2, 3)
     plt.imshow(dilated, 'gray')
     plt.axis('off')
